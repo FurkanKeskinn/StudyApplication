@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.2548717948717949" />
         <entry key="..\:/Users/ben/AndroidStudioProjects/StudyActivty/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.23460508701472557" />
         <entry key="..\:/Users/ben/AndroidStudioProjects/StudyActivty/app/src/main/res/layout-w936dp/activity_login.xml" value="0.273828125" />
         <entry key="..\:/Users/ben/AndroidStudioProjects/StudyActivty/app/src/main/res/layout/activity_home_page.xml" value="0.1" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Users/ben/AndroidStudioProjects/StudyActivty/app/src/main/res/layout/activity_shared_pdf_activty.xml" value="0.1" />
         <entry key="..\:/Users/ben/AndroidStudioProjects/StudyActivty/app/src/main/res/layout/recycler_row.xml" value="0.1" />
         <entry key="..\:/Users/ben/AndroidStudioProjects/StudyActivty/app/src/main/res/menu/options_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_pdf_view.xml" value="0.1" />
       </map>
     </option>
   </component>

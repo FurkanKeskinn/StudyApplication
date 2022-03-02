@@ -1,7 +1,7 @@
 package com.example.studyactivty
 
-import android.graphics.Bitmap
-import android.widget.ImageView
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-class PDF(var userEmail: String,var pdfName: String,var pdfUrl: String) {
-}
+@Parcelize
+class PDF(var userEmail: String, var pdfName: String, var pdfUrl: String) : Parcelable

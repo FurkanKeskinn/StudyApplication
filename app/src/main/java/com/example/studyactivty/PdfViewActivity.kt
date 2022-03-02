@@ -1,26 +1,24 @@
 package com.example.studyactivty
 
 
+import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.pdf.PdfDocument
-import android.graphics.pdf.PdfRenderer
-import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
-import android.os.ParcelFileDescriptor
-import android.widget.Toast
+import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toFile
 import com.github.barteksc.pdfviewer.PDFView
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_pdf_view.view.*
-import kotlinx.android.synthetic.main.activity_shared_pdf_activty.*
-import java.io.File
+import java.io.BufferedInputStream
+import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
+import javax.net.ssl.HttpsURLConnection
+
 
 class PdfViewActivity : AppCompatActivity() {
 
     lateinit var pdfView: PDFView
-    var pdfUrl = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,19 +26,36 @@ class PdfViewActivity : AppCompatActivity() {
 
         pdfView = findViewById(R.id.pdfView)
 
-        var intent: Intent = intent
-
-        if (getIntent() != null) {
-            pdfUrl = intent.getStringExtra("pdfUrl")!!
-            if (pdfUrl != null) {
-                Toast.makeText(this, "çalıştı", Toast.LENGTH_LONG).show()
-                pdfView.pdfView.fromAsset(pdfUrl)
-                    .enableDoubletap(true)
-                    .pages(0)
-                    .load()
-            }
+        (intent?.getParcelableExtra<Parcelable>(BUNDLE_KEY_ITEM) as PDF?)?.let {
+            GetPDFFromUrl().execute(it.pdfUrl)
         }
-
     }
 
+    companion object {
+        const val BUNDLE_KEY_ITEM = "bundle.key.item"
+        fun newIntent(context: Context, pdf: PDF) = Intent(context, PdfViewActivity::class.java).apply {
+            putExtra(BUNDLE_KEY_ITEM, pdf)
+        }
+    }
+
+    inner class GetPDFFromUrl : AsyncTask<String?, Void?, InputStream?>() {
+        override fun doInBackground(vararg value: String?): InputStream? {
+            var inputStream: InputStream? = null
+            try {
+                val url = URL(value.first())
+                val urlConnection: HttpURLConnection = url.openConnection() as HttpsURLConnection
+                if (urlConnection.responseCode == 200) {
+                    inputStream = BufferedInputStream(urlConnection.inputStream)
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+                return null
+            }
+            return inputStream
+        }
+
+        override fun onPostExecute(inputStream: InputStream?) {
+            pdfView.fromStream(inputStream).load()
+        }
+    }
 }
