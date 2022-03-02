@@ -1,5 +1,6 @@
 package com.example.studyactivty
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_pdf_activty.*
 
 class PdfActivty : AppCompatActivity() {
 
+    lateinit var context: Context
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database : FirebaseFirestore
