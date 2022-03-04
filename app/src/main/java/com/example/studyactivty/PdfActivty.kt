@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.activity_pdf_activty.*
+import kotlinx.android.synthetic.main.activity_pdf.*
 
 class PdfActivty : AppCompatActivity() {
 
@@ -25,7 +25,7 @@ class PdfActivty : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pdf_activty)
+        setContentView(R.layout.activity_pdf)
 
 
         auth = FirebaseAuth.getInstance()
