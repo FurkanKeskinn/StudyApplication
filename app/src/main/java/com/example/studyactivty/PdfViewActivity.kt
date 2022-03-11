@@ -7,6 +7,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
+import com.example.studyactivty.databinding.ActivityPdfViewBinding
 import com.github.barteksc.pdfviewer.PDFView
 import java.io.BufferedInputStream
 import java.io.IOException
@@ -18,13 +19,17 @@ import javax.net.ssl.HttpsURLConnection
 
 class PdfViewActivity : AppCompatActivity() {
 
+    private var _binding: ActivityPdfViewBinding? = null
+    private val binding get() = _binding!!
+
     lateinit var pdfView: PDFView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pdf_view)
+        _binding = ActivityPdfViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        pdfView = findViewById(R.id.pdfView)
+        pdfView = binding.pdfView
 
         (intent?.getParcelableExtra<Parcelable>(BUNDLE_KEY_ITEM) as PDF?)?.let {
             GetPDFFromUrl().execute(it.pdfUrl)
@@ -34,7 +39,7 @@ class PdfViewActivity : AppCompatActivity() {
     companion object {
         const val BUNDLE_KEY_ITEM = "bundle.key.item"
         fun newIntent(context: Context, pdf: PDF) = Intent(context, PdfViewActivity::class.java).apply {
-            putExtra(BUNDLE_KEY_ITEM, pdf)
+            putExtra(BUNDLE_KEY_ITEM,pdf)
         }
     }
 

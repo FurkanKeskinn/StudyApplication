@@ -5,19 +5,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.studyactivty.databinding.ActivtyLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_login_activty.*
 
 class LoginActivty : AppCompatActivity() {
+    private var _binding: ActivtyLoginBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_activty)
+        setContentView(R.layout.activty_login)
+        _binding = ActivtyLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
+
 
         if(currentUser != null){
             val intent = Intent(this, PdfActivty::class.java)
@@ -27,8 +32,8 @@ class LoginActivty : AppCompatActivity() {
     }
 
     fun btnRegister(view: View){
-        var email = edt_register_Email.text.toString()
-        var password = edt_register_Password.text.toString()
+        var email =binding.edtRegisterEmail.text.toString()
+        var password = binding.edtRegisterPassword.text.toString()
 
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener{
             task ->
@@ -50,7 +55,7 @@ class LoginActivty : AppCompatActivity() {
 
     fun btnLogin(view: View){
 
-        auth.signInWithEmailAndPassword(edt_register_Email.text.toString(),edt_register_Password.text.toString())
+        auth.signInWithEmailAndPassword(binding.edtRegisterEmail.text.toString(),binding.edtRegisterPassword.text.toString())
             .addOnCompleteListener{
                 task ->
 
