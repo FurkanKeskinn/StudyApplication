@@ -8,12 +8,16 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.studyactivty.databinding.ActivityPdfBinding
+import com.example.studyactivty.databinding.ActivtyLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.activity_pdf.*
 
 class PdfActivty : AppCompatActivity() {
+
+    private var _binding: ActivityPdfBinding? = null
+    private val binding get() = _binding!!
 
     lateinit var context: Context
 
@@ -25,7 +29,8 @@ class PdfActivty : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pdf)
+        _binding = ActivityPdfBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         auth = FirebaseAuth.getInstance()
@@ -34,9 +39,9 @@ class PdfActivty : AppCompatActivity() {
         getData()
 
         var layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        binding.recyclerView.layoutManager = layoutManager
         recyclerViewAdapter = PdfRecyclerAdapter(pdfList)
-        recyclerView.adapter = recyclerViewAdapter
+        binding.recyclerView.adapter = recyclerViewAdapter
 
     }
 

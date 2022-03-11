@@ -10,16 +10,18 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.studyactivty.databinding.ActivitySharedPdfBinding
+import com.example.studyactivty.databinding.ActivitySharedVideoActivtyBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_pdf_view.*
-import kotlinx.android.synthetic.main.activity_shared_pdf.*
 import java.util.*
 
 class SharedPdfActivty : AppCompatActivity() {
 
+    private var _binding: ActivitySharedPdfBinding? = null
+    private val binding get() = _binding!!
 
     var selectedItem: Uri? = null
     private lateinit var auth: FirebaseAuth
@@ -28,7 +30,8 @@ class SharedPdfActivty : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shared_pdf)
+        _binding = ActivitySharedPdfBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         storage = FirebaseStorage.getInstance()
         auth = FirebaseAuth.getInstance()
@@ -52,7 +55,7 @@ class SharedPdfActivty : AppCompatActivity() {
                     val downloadUrl = uri.toString()
 
                     val currentuserEmail = auth.currentUser!!.email.toString()
-                    val pdfName = pdfName.text.toString()  //kullanıcı pdf ismi alma işlemi
+                    val pdfName = binding.pdfName.text.toString()  //kullanıcı pdf ismi alma işlemi
                     val date = Timestamp.now()
 
                     //veri tabanı işlemleri
