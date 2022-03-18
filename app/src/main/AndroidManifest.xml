@@ -14,16 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyActivty">
         <activity
+            android:name=".VideoPackage.VideoViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VideoPackage.VideoActivity"
+            android:exported="false" />
+        <activity
             android:name=".VideoPackage.SharedVideoActivty"
             android:exported="false" />
         <activity
-            android:name=".PdfViewActivity"
+            android:name=".PdfPackage.PdfViewActivity"
             android:exported="false" />
         <activity
-            android:name=".PdfActivty"
+            android:name=".PdfPackage.PdfActivty"
             android:exported="false" />
         <activity
-            android:name=".SharedPdfActivty"
+            android:name=".PdfPackage.SharedPdfActivty"
             android:exported="false" />
         <activity
             android:name=".HomePageActivtiy"

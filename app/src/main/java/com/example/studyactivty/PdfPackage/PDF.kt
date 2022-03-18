@@ -1,4 +1,4 @@
-package com.example.studyactivty
+package com.example.studyactivty.PdfPackage
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

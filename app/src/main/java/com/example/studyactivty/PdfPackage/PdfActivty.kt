@@ -1,4 +1,4 @@
-package com.example.studyactivty
+package com.example.studyactivty.PdfPackage
 
 import android.content.Context
 import android.content.Intent
@@ -8,8 +8,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.studyactivty.HomePageActivtiy
+import com.example.studyactivty.R
+import com.example.studyactivty.VideoPackage.SharedVideoActivty
+import com.example.studyactivty.VideoPackage.VideoActivity
 import com.example.studyactivty.databinding.ActivityPdfBinding
-import com.example.studyactivty.databinding.ActivtyLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -46,9 +49,7 @@ class PdfActivty : AppCompatActivity() {
     }
 
     fun getData(){
-        database.collection("PDFCollections")
-            .orderBy("date", Query.Direction.DESCENDING)
-
+        database.collection("PDFCollections").orderBy("date", Query.Direction.DESCENDING)
             .addSnapshotListener {
                 snapshot,exception->
 
@@ -91,12 +92,23 @@ class PdfActivty : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if(item.itemId == R.id.shared_pdf){
-            val intent = Intent(this,SharedPdfActivty::class.java)
+            val intent = Intent(this, SharedPdfActivty::class.java)
             startActivity(intent)
         }
+
+        else if(item.itemId == R.id.shared_video){
+            val intent = Intent(this, SharedVideoActivty::class.java)
+            startActivity(intent)
+        }
+
+        else if(item.itemId == R.id.video_screen){
+            val intent = Intent(this, VideoActivity::class.java)
+            startActivity(intent)
+        }
+
         else if(item.itemId == R.id.sign_out){
             auth.signOut()
-            val intent = Intent(this,HomePageActivtiy::class.java)
+            val intent = Intent(this, HomePageActivtiy::class.java)
             startActivity(intent)
             finish()
         }

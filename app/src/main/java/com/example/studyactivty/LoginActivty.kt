@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.studyactivty.PdfPackage.PdfActivty
 import com.example.studyactivty.databinding.ActivtyLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
