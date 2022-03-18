@@ -1,10 +1,9 @@
-package com.example.studyactivty
+package com.example.studyactivty.PdfPackage
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studyactivty.databinding.ActivtyLoginBinding
+import com.example.studyactivty.R
 import com.example.studyactivty.databinding.RecyclerRowBinding
 
 class PdfRecyclerAdapter(private val pdfList: ArrayList<PDF>) : RecyclerView.Adapter<PdfRecyclerAdapter.PDFHolder>() {
@@ -21,8 +20,9 @@ class PdfRecyclerAdapter(private val pdfList: ArrayList<PDF>) : RecyclerView.Ada
         holder.binding.imageViewRow.setImageResource(R.drawable.aa)
         holder.binding.textViewRow.text = pdfList[position].pdfName
 
-        holder.binding.cardView.setOnClickListener {
-            holder.itemView.context.startActivity(PdfViewActivity.newIntent(holder.itemView.context, pdfList[position]))
+        holder.binding.cardView.setOnClickListener { holder.itemView.context.startActivity(PdfViewActivity.newIntent(holder.itemView.context, pdfList[position]
+                )
+            )
         }
     }
 

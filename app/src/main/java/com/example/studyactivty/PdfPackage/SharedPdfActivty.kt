@@ -1,4 +1,4 @@
-package com.example.studyactivty
+package com.example.studyactivty.PdfPackage
 
 import android.app.Activity
 import android.content.Intent
@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.studyactivty.databinding.ActivitySharedPdfBinding
-import com.example.studyactivty.databinding.ActivitySharedVideoActivtyBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -138,4 +137,5 @@ class SharedPdfActivty : AppCompatActivity() {
 
         super.onActivityResult(requestCode, resultCode, data)
     }
+
 }
